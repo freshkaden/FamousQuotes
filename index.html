@@ -10,14 +10,15 @@
 
     <button id="quoteClicker"> New Quote </button>
 
-    <p id="quote"> "click the button to get started "</p>
+    <p id="quote"> </p>
 
 
     <script>
-        // ten example quotes
+        // ten example quotes stored in array
+        // I used quotes from goodreads.com
         const quotes = [
             {
-                quote: "To live is the rarest thing in the world. Most poeple exist, that is all. - Oscar Wilde",
+                quote: "To live is the rarest thing in the world. Most poeple exist, that is all.",
                 author: "Oscar Wilde"
             },
 
@@ -35,14 +36,40 @@
                 quote: "Be the change you wish to see in the world.",
                 author: "Gandhi"
             },
+
+            {
+                quote: "Everything you can imagine is real.",
+                author: "Pablo Picasso"
+            },
+
+            {
+                quote: "Life isn't about finding yourself. Life is about creating yourself.",
+                author: "George Bernard Shaw"
+            }
         ]
 
         const button = document.getElementById("quoteClicker");
         const quote = document.getElementById("quote");
 
+        // we need a variable to store the previous quote so we dont repeat
+        let PreviousQuoteIndex = -1;
+
         button.addEventListener("click", function() {
-            const randomQuotePicker = Math.floor(Math.random() * quotes.length);
+            // pick random integer out of 10
+            let randomQuotePicker = Math.floor(Math.random() * quotes.length);
+
+            // if the new random quote index equals the previous quote index, choose a new random index so we dont repeat quotes
+            while (randomQuotePicker === PreviousQuoteIndex){
+                randomQuotePicker = Math.floor(Math.random() * quotes.length);
+            }
+
+            // store the quote that was picked into the previousQuoteIndex variable so we make sure the same quote is not picked twice
+            previousQuoteIndex = randomQuotePicker;
+
+            // set selectedQuote to the random number
             const selectedQuote = quotes[randomQuotePicker];
+
+            // extract the text from the selected quote in the array. extract both the quote and the author to display
             quote.textContent = `"${selectedQuote.quote}" - ${selectedQuote.author}`;
         });
 
