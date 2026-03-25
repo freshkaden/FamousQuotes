@@ -8,6 +8,46 @@
 <body>
     <h1> Quote Generator</h1>
 
-    <button id="quoteClicker"> Click to get new quote </button>
+    <button id="quoteClicker"> New Quote </button>
+
+    <p id="quote"> "click the button to get started "</p>
+
+
+    <script>
+        // ten example quotes
+        const quotes = [
+            {
+                quote: "To live is the rarest thing in the world. Most poeple exist, that is all. - Oscar Wilde",
+                author: "Oscar Wilde"
+            },
+
+            {
+                quote: "If you tell the truth, you don't have to remember anything.",
+                author: "Mark Twain"
+            },
+
+            {
+                quote: "It is better to be hated for what you are then to be loved for what you are not.",
+                author: "Andre Gide"
+            },
+
+            {
+                quote: "Be the change you wish to see in the world.",
+                author: "Gandhi"
+            },
+        ]
+
+        const button = document.getElementById("quoteClicker");
+        const quote = document.getElementById("quote");
+
+        button.addEventListener("click", function() {
+            const randomQuotePicker = Math.floor(Math.random() * quotes.length);
+            const selectedQuote = quotes[randomQuotePicker];
+            quote.textContent = `"${selectedQuote.quote}" - ${selectedQuote.author}`;
+        });
+
+
+
+    </script>
 </body>
 </html>
